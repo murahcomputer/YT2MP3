@@ -1,0 +1,39 @@
+[Unit]
+Description=YT2MP3 - YouTube to MP3 Converter
+After=network.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ubuntu
+Group=ubuntu
+WorkingDirectory=/var/www/yt2mp3
+
+# Environment
+Environment=NODE_ENV=production
+Environment=PORT=3000
+# yt-dlp menulis cache ke $HOME/.cache/yt-dlp — arahkan ke folder proyek
+Environment=HOME=/var/www/yt2mp3/.home
+Environment=XDG_CACHE_HOME=/var/www/yt2mp3/.cache
+
+ExecStart=/usr/bin/node server/index.js
+Restart=always
+RestartSec=5
+
+# Keamanan dasar
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+ReadWritePaths=/var/www/yt2mp3
+
+# Batas resource agar aman bila ada permintaan berlebihan
+MemoryMax=2G
+CPUQuota=200%
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=yt2mp3
+
+[Install]
+WantedBy=multi-user.target

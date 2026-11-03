@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>YT2MP3 — Konverter YouTube ke MP3</title>
+  <meta name="description" content="Konversi video YouTube ke MP3 128-320 kbps langsung dari link. Gratis, cepat, dengan progres real-time.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>%F0%9F%8E%B5</text></svg>">
+  <link rel="stylesheet" href="/style.css?v=2">
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="/">
+        <span class="brand-mark" aria-hidden="true">&#9654;</span>
+        <span class="brand-name">YT2<b>MP3</b></span>
+      </a>
+      <span class="pill">128 &ndash; 320 kbps</span>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <h1>YouTube ke <span class="grad">MP3</span></h1>
+      <p class="subtitle">
+        Tempel link video YouTube, pilih kualitas, lalu unduh.
+        Proses berlangsung di server dengan progres real&ndash;time.
+      </p>
+
+      <form id="analyze-form" class="url-form" autocomplete="off">
+        <div class="url-box">
+          <input id="url-input" type="url" inputmode="url" required
+                 placeholder="https://www.youtube.com/watch?v=..." aria-label="Link YouTube">
+          <button id="analyze-btn" type="submit">Analisis</button>
+        </div>
+        <p class="hint">Didukung: <code>youtube.com/watch</code>, <code>youtu.be</code>, <code>/shorts/</code>, <code>/embed/</code></p>
+      </form>
+
+      <div id="error-box" class="error" role="alert" hidden></div>
+    </section>
+
+    <section id="video-card" class="card" hidden>
+      <div class="video-head">
+        <img id="thumb" class="thumb" alt="" width="480" height="360">
+        <div class="video-meta">
+          <h2 id="video-title">&mdash;</h2>
+          <p id="video-sub" class="muted">&mdash;</p>
+          <div class="badges">
+            <span id="badge-duration" class="badge">0:00</span>
+            <span class="badge badge-accent">MP3</span>
+          </div>
+        </div>
+      </div>
+
+      <fieldset class="quality-block">
+        <legend>Pilih kualitas audio</legend>
+        <div class="qualities">
+          <label class="quality">
+            <input type="radio" name="quality" value="128">
+            <span class="q-main">128 <small>kbps</small></span>
+            <span class="q-sub">Ringan</span>
+          </label>
+          <label class="quality">
+            <input type="radio" name="quality" value="192" checked>
+            <span class="q-main">192 <small>kbps</small></span>
+            <span class="q-sub">Standar</span>
+          </label>
+          <label class="quality">
+            <input type="radio" name="quality" value="256">
+            <span class="q-main">256 <small>kbps</small></span>
+            <span class="q-sub">Bagus</span>
+          </label>
+          <label class="quality">
+            <input type="radio" name="quality" value="320">
+            <span class="q-main">320 <small>kbps</small></span>
+            <span class="q-sub">Terbaik</span>
+          </label>
+        </div>
+      </fieldset>
+
+      <button id="convert-btn" class="btn-primary" type="button">Konversi ke MP3</button>
+
+      <div id="progress-block" class="progress" hidden>
+        <div class="bar"><div id="bar-fill" class="bar-fill"></div></div>
+        <div class="progress-row">
+          <span id="stage-label">Menyiapkan&hellip;</span>
+          <span id="percent-label">0%</span>
+        </div>
+      </div>
+
+      <div id="done-block" class="done" hidden>
+        <a id="download-btn" class="btn-primary" href="#">&#8595; Unduh MP3</a>
+        <p id="file-info" class="file-info muted"></p>
+        <button id="again-btn" class="btn-ghost" type="button">Konversi lagi</button>
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="feature">
+        <h3>&#127919; Kualitas pilihan</h3>
+        <p>128, 192, 256, hingga 320 kbps sesuai kebutuhan penyimpanan dan kualitas.</p>
+      </div>
+      <div class="feature">
+        <h3>&#128737; PO Token</h3>
+        <p>Server memakai PO Token agar permintaan tidak dianggap bot oleh YouTube.</p>
+      </div>
+      <div class="feature">
+        <h3>&#9889; Progres real&ndash;time</h3>
+        <p>Pantau tahap unduh dan konversi langsung dari browser Anda.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <p>Hanya untuk penggunaan pribadi. Hormati hak cipta kreator &mdash; unduh hanya konten yang Anda punya haknya.</p>
+      <p class="muted">Dibangun dengan Node.js, yt-dlp, ffmpeg &amp; youtube-po-token-generator.</p>
+    </div>
+  </footer>
+
+  <script src="/app.js?v=2" defer></script>
+</body>
+</html>
